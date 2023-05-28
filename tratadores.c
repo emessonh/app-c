@@ -53,7 +53,7 @@ void tratador_menu_aluno(Aluno **alunos, int *qtd_atual_aluno)
         aluno = buscar_aluno(alunos, &posicao);
         // if aluno for encontrado atualiza o endereço
         if (aluno){
-            atualizacao_endereco(aluno, aluno->endereco);
+            atualizacao_aluno(aluno, aluno->endereco);
             printf("Atualizado com sucesso!\n");
             continuar = 0;
         }
@@ -320,17 +320,30 @@ void imprimir_turma(Turma *turma)
     // imprimir_endereco(professor->endereco);
 }
 
+// função que atualiza os atributos de aluno
+void atualizacao_aluno(Aluno *aluno, Endereco *end){
+    // pede as atualizações e muda o objeto 
+    printf("Atualização de matrícula\t> ");
+    fgets(aluno->matricula, 9, stdin);
+    printf("Atualização  de CPF\t> ");
+    fgets(aluno->cpf, 11, stdin);
+    printf("Atualização  de Nome\t> ");
+    fgets(aluno->nome, 49, stdin);
+    // chama a função de endereço para finalizar a atualização
+    atualizacao_endereco(aluno, end);
+}
+
 // função que atualiza o objeto endereço, recebe os ponteiros de aluno e endereço
 void atualizacao_endereco(Aluno *aluno, Endereco *end){
     // pede ao usuário as atulizações, acessa cada atributo do endereço e o modifica
-    printf("Logradouro\t> ");
+    printf("Atualização de logradouro\t> ");
     fgets(end->logradouro, 49, stdin);
-    printf("Bairro\t> ");
+    printf("Atualização de bairro\t> ");
     fgets(end->bairro, 49, stdin);
-    printf("Cidade\t> ");
+    printf("Atualização de cidade\t> ");
     fgets(end->cidade, 49, stdin);
-    printf("Estado\t> ");
+    printf("Atualização de estado\t> ");
     fgets(end->estado, 9, stdin);
-    printf("Número\t> ");
+    printf("Atualização de número\t> ");
     fgets(end->numero, 9, stdin);
 }
