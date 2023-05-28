@@ -47,7 +47,20 @@ void tratador_menu_aluno(Aluno **alunos, int *qtd_atual_aluno)
     break;
     case 3:
     {
-        printf("Implementar a atualização de aluno\n");
+        // printf("Implementar a atualização de aluno\n");
+        int posicao = 0;
+        int continuar = 1;
+        aluno = buscar_aluno(alunos, &posicao);
+        // if aluno for encontrado atualiza o endereço
+        if (aluno){
+            atualizacao_endereco(aluno, aluno->endereco);
+            printf("Atualizado com sucesso!\n");
+            continuar = 0;
+        }
+        // caso não seja encontrado imprime a informação para o usuário
+        else{
+            printf("Aluno não encontrado!\n");
+        }
     }
 
     break;
@@ -305,4 +318,19 @@ void imprimir_turma(Turma *turma)
     // printf("Nome: %s", professor->nome);
     // printf("CPF: %s", professor->cpf);
     // imprimir_endereco(professor->endereco);
+}
+
+// função que atualiza o objeto endereço, recebe os ponteiros de aluno e endereço
+void atualizacao_endereco(Aluno *aluno, Endereco *end){
+    // pede ao usuário as atulizações, acessa cada atributo do endereço e o modifica
+    printf("Logradouro\t> ");
+    fgets(end->logradouro, 49, stdin);
+    printf("Bairro\t> ");
+    fgets(end->bairro, 49, stdin);
+    printf("Cidade\t> ");
+    fgets(end->cidade, 49, stdin);
+    printf("Estado\t> ");
+    fgets(end->estado, 9, stdin);
+    printf("Número\t> ");
+    fgets(end->numero, 9, stdin);
 }

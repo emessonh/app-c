@@ -30,5 +30,6 @@ void imprimir_professor(Professor *professor);
 // void imprimir_turma(turma *turma);
 
 // void imprimir_endereco(Endereco *endereco);
-
+// TODO: update endereço
+void atualizacao_endereco(Aluno *aluno, Endereco *end);
 #endif
