@@ -16,4 +16,19 @@ void imprimir_aluno(Aluno *aluno);
 
 void imprimir_endereco(Endereco *endereco);
 
+
+// TODO: add tratadores professor
+void tratador_menu_professor(Professor **professores, int *qtd_atual_professor);
+Professor *construir_professor();
+Professor *buscar_professor(Professor **professores, int *posicao);
+void imprimir_professor(Professor *professor);
+
+// TODO: add tratadores turma
+// void tratador_menu_turma(turma **turmas, int *qtd_atual_turma);
+// turma *construir_turma();
+// turma *buscar_turma(turma **turmas, int *posicao);
+// void imprimir_turma(turma *turma);
+
+// void imprimir_endereco(Endereco *endereco);
+
 #endif
