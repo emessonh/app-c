@@ -16,4 +16,6 @@ void imprimir_aluno(Aluno *aluno);
 
 void imprimir_endereco(Endereco *endereco);
 
+void atualizacao_endereco(Aluno *aluno, Endereco *end); //Função para atualizar o endereço
+
 #endif
