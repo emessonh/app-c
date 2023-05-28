@@ -3,5 +3,6 @@
 
 #define MAX_ALUNO 100
 #define MAX_PROFESSOR 100
+#define MAX_TURMAS 100
 
 #endif

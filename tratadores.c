@@ -163,6 +163,80 @@ void tratador_menu_professor(Professor **professores, int *qtd_atual_professor)
     }
 }
 
+void tratador_menu_turma(Turma **turmas, int *qtd_atual_turma, Professor **professores, int *qtd_atual_professores)
+{
+    int opcao = menu_crud_turma();
+    Turma *turma = NULL;
+    switch (opcao)
+    {
+    case 1:
+   
+        if (*qtd_atual_turma >= MAX_TURMAS)
+        {
+            printf("Número máximo de turmas atingido\n");
+        }
+        else
+        {
+            // Passo 1: buscar posicao disponível
+            int i = 0;
+            for (; i <= *qtd_atual_turma; i++)
+            {
+                if (turmas[i]== NULL)
+                {
+                    // significa que esta posição está livre para uso
+                    break;
+                }
+            }
+            // TODO: check this error
+            turma = construir_turma(professores);
+            turmas[i] = turma;
+            *qtd_atual_turma++;
+        }
+        break;
+    case 2:
+    {
+        int posicao = 0;
+        turma = buscar_turma(turmas, &posicao);
+        if (turma)
+        {
+            imprimir_turma(turma);
+        }
+        else
+        {
+            printf("Turma não encontrada!!!\n");
+        }
+    }
+    break;
+    case 3:
+    // TODO: implementar update of "turma"
+    {
+        printf("Implementar a atualização de Turma\n");
+    }
+
+    break;
+    case 4:
+    {
+        int posicao = 0;
+        turma = buscar_turma(turmas, &posicao);
+        if (turma)
+        {
+            destruirTurma(turma);
+            turmas[posicao] = NULL;
+            printf("Turma destruido\n");
+        }
+        else
+        {
+            printf("Turma não encontrada!!\n");
+        }
+    }
+
+    break;
+    default:
+        printf("Retornando ao menu principal\n");
+        break;
+    }
+}
+
 Endereco *construir_endereco()
 {
     Endereco endereco;
@@ -226,7 +300,7 @@ void imprimir_aluno(Aluno *aluno)
 void imprimir_endereco(Endereco *endereco)
 {
     printf("Logradouro: %s", endereco->logradouro);
-    printf("Número: %s", endereco->numero);
+    printf("Número da residencia: %s", endereco->numero);
     printf("Bairro: %s", endereco->bairro);
     printf("Cidade: %s", endereco->cidade);
     printf("Estado: %s", endereco->estado);
@@ -250,14 +324,12 @@ Professor *construir_professor()
 Professor *buscar_professor(Professor **professores, int *posicao)
 {
     char matricula[50];
-    printf("Matrícula > ");
+    printf("Matrícula Professor> ");
     fgets(matricula, 49, stdin);
     Professor *resultado = NULL;
     int pos_resultado = -1;
     for (int i = 0; i < MAX_ALUNO; i++)
     {
-        // Vamos testar se o aluno existe e se a matricula e a buscada
-        // strcmp compara strings. Se for 0 indica que são iguais
         if (professores[i] && !strcmp(matricula, professores[i]->matricula))
         {
             resultado = professores[i];
@@ -270,54 +342,68 @@ Professor *buscar_professor(Professor **professores, int *posicao)
 
 void imprimir_professor(Professor *professor)
 {
-    printf("Matrícula: %s", professor->matricula);
-    printf("Nome: %s", professor->nome);
-    printf("CPF: %s", professor->cpf);
+    printf("Matrícula professor: %s", professor->matricula);
+    printf("Nome professor: %s", professor->nome);
+    printf("CPF professor: %s", professor->cpf);
     imprimir_endereco(professor->endereco);
 }
 
 // TODO: add tratadores turma
-Turma *construir_turma()
+Turma *construir_turma(Professor **professores)
 {
+    //Aluno **alunos[MAX_ALUNO] = {NULL};
     Turma turma;
-    // printf("Matrícula\t> ");
-    // fgets(turma.matricula, 9, stdin);
-    // printf("Nome\t> ");
-    // fgets(professor.nome, 49, stdin);
-    // printf("CPF\t> ");
-    // fgets(professor.cpf, 11, stdin);
+    int posicao = 0;
+    printf("Codigo\t> ");
+    fgets(turma.codigo, 9, stdin);
+    printf("Nome da disciplina\t> ");
+    fgets(turma.nome_disciplina, 49, stdin);
 
-    // professor.endereco = construir_endereco();
-    // return criarProfessor(professor.matricula, professor.cpf, professor.nome, professor.endereco);
+    turma.professor = buscar_professor(professores, &posicao);
+    //turma.lista_alunos = {NULL};
+
+    printf("Média da turma\t> ");
+    scanf("%f", &turma.media_turma);
+
+    return criarTurma(turma.codigo, turma.nome_disciplina, turma.professor, turma.lista_alunos, turma.media_turma);
 }
 
 Turma *buscar_turma(Turma **turmas, int *posicao)
 {
-    // char matricula[50];
-    // printf("Matrícula > ");
-    // fgets(matricula, 49, stdin);
-    // Professor *resultado = NULL;
-    // int pos_resultado = -1;
-    // for (int i = 0; i < MAX_ALUNO; i++)
-    // {
-    //     // Vamos testar se o aluno existe e se a matricula e a buscada
-    //     // strcmp compara strings. Se for 0 indica que são iguais
-    //     if (professores[i] && !strcmp(matricula, professores[i]->matricula))
-    //     {
-    //         resultado = professores[i];
-    //         break;
-    //     }
-    // }
-    // *posicao = pos_resultado;
-    // return resultado;
+    char codigo[10];
+    printf("codigo > ");
+    fgets(codigo, 9, stdin);
+    Turma *resultado = NULL;
+    int pos_resultado = -1;
+    for (int i = 0; i < MAX_TURMAS; i++)
+    {
+
+        if (turmas[i] && !strcmp(codigo, turmas[i]->codigo))
+        {
+            resultado = turmas[i];
+            break;
+        }
+    }
+    *posicao = pos_resultado;
+    return resultado;
 }
 
 void imprimir_turma(Turma *turma)
 {
-    // printf("Matrícula: %s", professor->matricula);
-    // printf("Nome: %s", professor->nome);
-    // printf("CPF: %s", professor->cpf);
-    // imprimir_endereco(professor->endereco);
+
+    printf("Codigo: %s", turma->codigo);
+    printf("Nome da disciplina: %s", turma->nome_disciplina);
+    
+    if(turma->professor == NULL)
+    {
+        printf("Professor: (sem professor cadastrado)\n");
+    }
+    else
+    {
+        imprimir_professor(turma->professor);
+    }
+    //IMPORTANT: tem que fazer uma função para imprimir a lista de alunos
+    printf("%f\n", turma->media_turma);
 }
 
 // função que atualiza os atributos de aluno
