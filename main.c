@@ -13,7 +13,7 @@ int main(int argc, char const *argv[])
 
     int qtd_atual_aluno = 0;
     // TODO: add qtd atual professor
-     int qtd_atual_professor = 0;
+    int qtd_atual_professor = 0;
 
     do
     {
@@ -28,11 +28,14 @@ int main(int argc, char const *argv[])
             tratador_menu_professor(professores, &qtd_atual_professor);
             break;
         case 3:
-            // tratador_menu_turma(turmas, &qtd_atual_turma);
+            //tratador_menu_turma(turmas, &qtd_atual_turma);
             break;
         case 4:
+            tratador_menu_estatistica(professores, &qtd_atual_professor);
+            break;
+        case 5:
             printf("Finalizando app...\n\n");
         }
-    } while (op_menu_principal != 4);
+    } while (op_menu_principal != 5);
     return 0;
 }
