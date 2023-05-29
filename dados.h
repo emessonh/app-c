@@ -30,19 +30,20 @@ typedef struct {
 
 // TODO: add turma model
 typedef struct {
-    char codigo[10];
+    int codigo;
     char nome_disciplina[50];
     Professor *professor;
-    Aluno **lista_alunos;
-    float *media_turma;
+    // TODO: check lista_alunos
+    int lista_alunos;
+    float media_turma;
 } Turma;
 
 // TODO: add interface create turma 
-Turma *criarTurma (char *codigo,
-                   char *nome_disciplina,
-                   Professor *professor,
-                   Aluno **lista_alunos,
-                   float *media_turma);
+Turma *criarTurma (int *codigo,
+                char *nome_disciplina,
+                Professor *professor,
+                int *lista_alunos,
+                float *media_turma);
 
 
 // TODO: add interface create professor 

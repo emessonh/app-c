@@ -24,15 +24,16 @@ Professor *buscar_professor(Professor **professores, int *posicao);
 void imprimir_professor(Professor *professor);
 
 // TODO: add tratadores turma
-void tratador_menu_turma(Turma **turmas, int *qtd_atual_turma, Professor **professores, int *qtd_atual_professores);
-Turma *construir_turma(Professor **professores);
-Turma *buscar_turma(Turma **turmas, int *posicao);
-void imprimir_turma(Turma *turma);
+// void tratador_menu_turma(turma **turmas, int *qtd_atual_turma);
+// turma *construir_turma();
+// turma *buscar_turma(turma **turmas, int *posicao);
+// void imprimir_turma(turma *turma);
 
 // void imprimir_endereco(Endereco *endereco);
 
-// TODO: update aluno
-void atualizacao_aluno(Aluno *aluno, Endereco *end);
-void atualizacao_endereco(Aluno *aluno, Endereco *end);
+// add tratador de estatística
+void tratador_menu_estatistica(Professor **professores, int *qtd_atual_professores);
 
+// update endereço
+void atualizacao_endereco(Aluno *aluno, Endereco *end);
 #endif
