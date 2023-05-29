@@ -35,4 +35,6 @@ void imprimir_turma(Turma *turma);
 void atualizacao_aluno(Aluno *aluno, Endereco *end);
 void atualizacao_endereco(Aluno *aluno, Endereco *end);
 
+void tratador_menu_estatistica(Professor **professores, int *qtd_atual_professores);
+
 #endif

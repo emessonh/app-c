@@ -116,7 +116,7 @@ void tratador_menu_professor(Professor **professores, int *qtd_atual_professor)
             // TODO: check this error
             professor = construir_professor();
             professores[i] = professor;
-            *qtd_atual_professor++;
+            (*qtd_atual_professor)++;
         }
         break;
     case 2:
@@ -432,4 +432,24 @@ void atualizacao_endereco(Aluno *aluno, Endereco *end){
     fgets(end->estado, 9, stdin);
     printf("Atualização de número\t> ");
     fgets(end->numero, 9, stdin);
+}
+
+// TODO: imprimir os professores, as matriculas dos professores que estão sem turma e a média de todas as turmas
+void tratador_menu_estatistica(Professor **professores, int *qtd_atual_professores){
+    int opcao = menu_estatistica();
+    switch (opcao)
+    {
+    // caso a opção seja 1 ele vai imprimir os nomes de todos os professores
+    case 1:
+        for (int i = 0; i < *qtd_atual_professores; i++){
+            printf("Professor(a): %s", professores[i] -> cpf);
+        }
+        break;
+    case 2:
+    
+        break;
+    case 3:
+    
+        break;
+    }
 }
