@@ -63,20 +63,20 @@ Professor *criarProfessor(char *matricula, char *nome, char *cpf, Endereco *ende
     return professor;
 }
 // TODO: add create turma function
-Turma *criarTurma(char *codigo,
+Turma *criarTurma(int *codigo,
                 char *nome_disciplina,
                 Professor *professor,
-                Aluno **lista_alunos,
+                int *lista_alunos,
                 float *media_turma)
 {
     Turma *turma = (Turma *)malloc(sizeof(Turma));
     if (turma)
     {
-        strcpy(turma->codigo, codigo);
+        turma->codigo, codigo; // Copia matricula para aluno->matricula
         strcpy(turma->nome_disciplina, nome_disciplina);
-        turma->professor = professor;
-        turma->lista_alunos = lista_alunos;
-        turma->media_turma = media_turma;
+        turma->professor, professor;
+        turma->lista_alunos, lista_alunos;
+        turma->media_turma, media_turma;
     }
     else
     {
